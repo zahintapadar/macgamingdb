@@ -356,7 +356,9 @@ export const reviewRouter = router({
           });
         }
 
-        const updateData: Record<string, unknown> = { notes: input.notes };
+        const updateData: Record<string, unknown> = {
+          notes: input.notes.trim() || null,
+        };
 
         if (input.performance !== undefined) {
           updateData.performance = input.performance;
@@ -383,7 +385,10 @@ export const reviewRouter = router({
           .set(updateData)
           .where(eq(gameReviews.id, input.reviewId));
 
-        if (input.performance !== undefined) {
+        if (
+          input.performance !== undefined &&
+          input.performance !== review.performance
+        ) {
           await updateGameAggregatedPerformance(ctx.db, review.gameId);
         }
 

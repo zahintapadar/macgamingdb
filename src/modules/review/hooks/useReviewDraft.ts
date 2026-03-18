@@ -7,7 +7,6 @@ import { trpc } from '@/lib/trpc/provider';
 import { toast } from 'sonner';
 import { type AppRouter } from '@macgamingdb/server/routers/_app';
 import { type Game, type GameReview } from '@macgamingdb/server/drizzle/types';
-import { or } from 'drizzle-orm';
 
 type ReviewWithGame = GameReview & { game: Game };
 
@@ -50,6 +49,9 @@ export function useReviewDraft(review: ReviewWithGame) {
       router.refresh();
       toast('Review updated');
     },
+    onError: () => {
+      toast.error('Failed to update review');
+    },
   });
 
   const updateDraftField = <K extends keyof ReviewDraft>(
@@ -68,5 +70,5 @@ export function useReviewDraft(review: ReviewWithGame) {
     });
   };
 
-  return { draft, updateDraftField, hasUnsavedChanges, saveChanges };
+  return { draft, updateDraftField, hasUnsavedChanges, saveChanges, isSaving: saveMutation.isPending };
 }

@@ -45,7 +45,7 @@ export function WiggleWrapper({
 
   return (
     <div
-      className={className}
+      className={`relative ${className ?? ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={(e) => {
         if (isTargetInRadixPortal(e.relatedTarget)) return;

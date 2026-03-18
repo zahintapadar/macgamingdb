@@ -41,7 +41,7 @@ export function ReviewItem({
   isEditing,
   onRequestDelete,
 }: ReviewItemProps) {
-  const { draft, updateDraftField, hasUnsavedChanges, saveChanges } =
+  const { draft, updateDraftField, hasUnsavedChanges, saveChanges, isSaving } =
     useReviewDraft(review);
 
   const hasSoftwareVersion =
@@ -195,6 +195,7 @@ export function ReviewItem({
                       variant="ghost"
                       size="sm"
                       onClick={saveChanges}
+                      disabled={isSaving}
                       className="text-white hover:text-blue-300 p-1"
                     >
                       <Save size={14} />

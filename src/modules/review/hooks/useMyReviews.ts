@@ -18,6 +18,9 @@ export function useMyReviews() {
       router.refresh();
       toast('Review deleted');
     },
+    onError: () => {
+      toast.error('Failed to delete review');
+    },
   });
 
   const enterEditMode = () => {
