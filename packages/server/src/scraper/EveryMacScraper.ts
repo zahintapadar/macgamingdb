@@ -45,6 +45,8 @@ export class EveryMacScraper {
       'https://everymac.com/systems/apple/mac-studio/index-macstudio.html',
     MacBookAir:
       'https://everymac.com/systems/apple/macbook-air/all-apple-silicon-macbook-air-models.html',
+    MacBookNeo:
+      'https://everymac.com/systems/apple/macbook-neo',
   };
 
   constructor(private readonly webScraper: WebScraper) {}
@@ -285,7 +287,7 @@ export class EveryMacScraper {
     chip: string;
     variant: ChipsetVariant;
   } {
-    const chipMatch = titleText.match(/"(M\d+)(\s+(Pro|Max|Ultra))?"/i);
+    const chipMatch = titleText.match(/"([MA]\d+)(\s+(Pro|Max|Ultra))?"/i);
 
     return {
       chip: chipMatch?.[1] || '',

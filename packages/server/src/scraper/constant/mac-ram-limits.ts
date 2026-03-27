@@ -85,4 +85,9 @@ export const RAM_LIMITS: RAMLimitsStructure = {
       [ChipsetVariant.ULTRA]: 192,
     },
   },
+  MacBookNeo: {
+    'A18 Pro': {
+      [ChipsetVariant.BASE]: 8,
+    },
+  },
 } as const;
